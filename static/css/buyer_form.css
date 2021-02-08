@@ -1,0 +1,33 @@
+.buyer_form h1{
+    text-align: center;
+}
+.buyer_form_form{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    gap: 20px;
+    align-items:center;
+}
+.buyer_form_form input{
+    border:none;
+    border-bottom:1px solid rgba(0,0,0,0.5);
+    border-left:1px solid rgba(0,0,0,0.5);
+    border-radius: 5px;
+    font-size: 18px;
+    margin:30px;
+    background-color: rgba(0,0,0,0.1);
+    padding: 10px;
+}
+.locality{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+.buyer_form_form button{
+    padding:5px 10px;
+    font-size: 25px;
+    border-radius: 5px;
+    border:none;
+    background-color: #009c75;
+    margin-bottom:10px;
+}

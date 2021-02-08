@@ -1,0 +1,48 @@
+{% extends "index.html" %}
+{% load static %}
+{% block title %}Seller Place{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/product_update.css' %}">
+<h1>Add a new product</h1>
+    <div class="form_add">
+        <form method='POST' enctype="multipart/form-data" class="sellerform">
+            {% csrf_token %}
+            <div>
+                <label for="product_name">Product_name</label>
+                <input type="text" placeholder="Enter Product Name" name="product_name" required>
+            </div>
+            <div>
+                <label for="category">Choose a Category:</label>
+    
+                <select name="category" id="category">
+                <option value="elec">Electronics</option>
+                <option value="fas">Fashion</option>
+                <option value="app">Home and Appliances</option>
+                <option value="book">Books and Magazines</option>
+                </select>
+            </div>
+            <div>
+                <label for="product_info">Product Information:</label>
+                <textarea name="product_info" id="product_info" cols="30" rows="5" required placeholder="Give more details about the product"></textarea>
+            </div>
+            <div>
+                <label for="MRP">Price of the Product:</label>
+                <input type="text" placeholder='MRP' id="mrp" name="mrp" required>
+            </div>
+            <div>
+                <label for="price">Price of the Product:</label>
+                <input type="text" placeholder='Price' id="price" name="price" required>
+            </div>
+            <div>
+                <label for="img">Upload Product image:</label>
+                <input type="file" id="img" name="product_img" accept="image/*">
+            </div>
+            <div>
+                <button>Add</button>
+            </div>
+        </form>
+    </div>
+    <style>
+        
+        </style>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}Address{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/buyer_form.css' %}">
+<div class="buyer_form">
+    <h1>Fill the Details</h1>{{buyer_address}}
+    <form action="" class=buyer_form_form enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        <div>
+            <input type="text" placeholder="Full Name" name="name" value="{{user.first_name}} {{user.last_name}}">
+        </div>
+        <div>
+            <input type="text" name="email" id="email" placeholder="Email Address" value="{{user.email}}">
+        </div>
+        <div class='locality'>
+            <input type="text" name="address_one" id="address_one" placeholder="Street Name/Locality" value="{{address_one}}">
+            <input type="text" name="address_two" id="address_two" placeholder="Area" value={{address_two}}>
+            <input type="tel" name='pincode' placeholder="Pincode" id="pincode" value={{pincode}}>
+            <input type="text" name="address_three" id="address_three" placeholder="City" value={{address_three}}>
+            <input type="text" name="address_four" id="address_four" placeholder="State" value={{address_four}}>
+            <input type="text" name="address_five" id="address_five" placeholder="Country" value={{address_five}}>
+        </div>
+        <div>
+            <button>Next</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "index.html" %}
+{% load static %}
+{% block title %}@{{user.username}}| My account{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/account.css' %}">
+<div class="account_info">
+    <div>
+        <div class="account_row">
+            <p class='profile p_text'><span>{{profile_letter}}</span></p>
+        </div>
+        <div class="account_row">
+            <p>Username</p>
+            <p class='profile p_username'>{{user.username}}</p>
+        </div>
+        <div class="account_row">
+            <p>Name</p>
+            <p class='profile p_name'>{{user.first_name}} {{user.last_name}}</p>
+        </div>
+        <div class="account_row">
+            <p>Email</p>
+            <p class='profile p_email'>{{user.email}}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

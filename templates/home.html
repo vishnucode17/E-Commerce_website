@@ -1,0 +1,19 @@
+{% extends "index.html" %}
+{% block content %}
+{% load static %}
+<div class="sideshow">
+    <div class="slideone">
+        <img src="{% static 'images/Electronics.png' %}" alt="electronics">
+    </div>
+    <div class="slidetwo">
+        <img src="{% static 'images/fashion.png' %}" alt="electronics">
+    </div>
+    <div class="slidethree">
+        <img src="{% static 'images/home.png' %}" alt="electronics">
+    </div>
+    <div class="slidefour">
+        <img src="{% static 'images/books.png' %}" alt="electronics">
+    </div>
+</div>
+<script src="{% static 'js/home.js' %}"></script>
+{% endblock %}

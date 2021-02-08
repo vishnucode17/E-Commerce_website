@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Home {% endblock %}</title>
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+    <div class="header">
+        <nav>
+            <div class="logo">
+                <a href="{% url 'home' %}"><img id='logo_img' src="{% static 'images/logo.png' %}" alt="logo"></a>
+            </div>
+            <div class="search">
+                <form class='search-form' action="{% url 'search' %}" method='get'>
+                    <input type="text" id="search-text" placeholder="Search for products, brands and many more" name="product">
+                    <button id="search-btn" class="fas fa-search fa-2x"></button>
+                </form>
+            </div>
+            {% if user.is_authenticated %}
+            <div class="auth">
+                <a href="{% url 'Logout' %}"><button id='auth-btn'>Logout</button></a>
+            </div>
+            <div class="account-dropdown">
+                <a href="{% url 'myaccount' %}"><div class="drop-btn fas fa-user-circle fa-3x"></div></a>
+                <div class="dropdown-content">
+                    <p>Welcome {{user.username}}</p>
+                    <a href="{% url 'myaccount' %}">My Account</a>
+                    <a href="{% url 'history' %}">My Orders</a>
+                    
+                </div>
+            </div>
+            {% else %}
+            <div class="auth">
+                <a href="{% url 'Login' %}" class="auth-btn"><button id='auth-btn'>Login</button></a>
+            </div>
+            {% endif %}
+            <a class="fas fa-cart-plus fa-3x"></a>
+        </nav>
+    </div>
+    {% block content %}
+    {% endblock %}
+    
+</body>
+</html>

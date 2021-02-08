@@ -1,0 +1,39 @@
+{% extends "index.html" %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+<div class="search_div">
+    <h1>{{result_len}}{{a}} search results showing for {{product}}</h1>
+</div>
+<div class="results">
+    <div class="all_search_results">
+        {% if search_string_length %}
+        {% for img,item,price,m_price,off in product_details_search %}
+        <a href="/product/{{item.id}}" id='product'>
+            <div class="product_search_info">
+                <div class="product_search_img">
+                    <img src="{{img}}" alt="{{img}}">
+                </div>
+                <div class="product_search_total">
+                    <div class="product_search_text">
+                        <p>{{item}}</p>
+                    </div>
+                    <div class='price_div'>
+                        <div class="product_search_mprice">
+                            <p class='m_price'>₹{{m_price}}</p>
+                            <p class='off'>{{off}}%</p>
+                        </div>
+                        <div class="product_search_price">
+                            <p>₹{{price}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+{% else %}
+<p>No results found</p>
+</div>
+{% endif %}
+{% endblock %}

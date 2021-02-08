@@ -1,0 +1,22 @@
+{% extends "index.html" %}
+{% block content %}
+{% load static %}
+<title>{% block title %} Login {% endblock %}</title>
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+<div class="Login_form">
+    <div class="Login">
+        <h1 id='login_heading'>Login</h1>
+        {% for i in messages %}
+        <p>{{i}}</p>
+        {% endfor %}
+        <form method="post" class="login_form">
+            {% csrf_token %}
+            <input type="text" placeholder="username" id="username" name="username" required>
+            <input type="password" placeholder="password" id="password" name="password" required>
+            <a href="{% url 'reset_password' %}" id="reset_password">Forgot Password?</a>
+            <button id="login-btn">Login</button>
+            <a href="{% url 'signup' %}" id="signup">Don't have an account?</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

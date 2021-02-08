@@ -1,0 +1,117 @@
+{% extends "index.html" %}
+{% load static %}
+{% block title %} {{get_product_name}} {% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/product_view.css' %}">
+<div class="product_frame">
+    <div class="product_view_frame">
+        <div class="product_image">
+            <img src="{{get_product_img}}" alt="">
+        </div>
+        <div class='product_information'>
+            <div>
+                <p id="product_title">{{get_product_name}}</p>
+            </div>
+            <div>
+                <h3>Product Details</h3>
+                <p id="product_info_data">{{get_product_info}}</p>
+            </div>
+            <div class='product_price_details'>
+                <p id="product_mrp">₹{{get_product_mrp}}</p>
+                <p id="product_disc">{{off}}% off</p>
+            </div>
+            <div>
+                <p id="product_price">₹{{get_product_price}}</p>
+            </div>
+            <div class='product_buttons'>
+                <button id='btn_buy' onclick="buy()">Buy Now</button>
+                <button id='btn_cart'>Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    <div class="seller_info">
+        <h1>Seller Information</h1>
+        <p>Store Name:<span id="seller_name">{{get_store_name}}</span></p> </p>
+    </div>
+</div>
+<div class="cart" style='display:none'>
+    <h1>My Cart</h1>
+    <div class="cart_details">
+        <div class="product_img_details">
+            <div class="product_cart_details">
+                <img src="{{get_product_img}}" alt="Product Image">
+                <div class="quantity">
+                    <button id="del_btn" onclick="decrement_func()"><i class="fas fa-trash-alt"></i></button>
+                    <button id="decrease" onclick='decrement_func()'>-</button>
+                    <form method='post'>
+                        <input type="tel" name="quantity" id="quantity" value="1">
+                    </form>
+                    <button id="increase" onclick="increment_func()">+</button>
+                </div>
+            </div>
+            <div class="quantity_details">
+                <p>{{get_product_name}}</p>
+                <p>Seller: <span>{{get_store_name}}</span></p>
+                <label for="quantity">Quantity</label>
+                <div class="cart_product_price">
+                    <p id='cart_mrp'>₹{{get_product_mrp}}</p>
+                    <p>{{off}}%</p>
+                    <p>₹{{get_product_price}}</p>
+                </div>
+            </div>
+            <button onclick="address()" id='place_order-btn'>Place Order</button>
+        </div>
+        <div>
+            <div class="total_price">
+                <h1>Price Details</h1>
+                <div id="total_price_one">
+                    <p id="cart_price_text">Price (1 item): </p>
+                    <p id="cart_price_one">₹{{get_product_price}}</p>
+                </div>
+                <div id="total_discount_price">
+                    <p id="cart_disc_price_text">Discount: </p>
+                    <p id="cart_disc_price">-₹{{diff}}</p>
+                </div>
+                <div id="delivery">
+                    <p id="cart_delivery_text">Delivery Charges: </p>
+                    <p id="cart_delivery">Free</p>
+                </div>
+                <div id="total_price">
+                    <p id="cart_price_text">Price: </p>
+                    <p id="cart_price_str">₹<span id="cart_price">{{get_product_price}}</span></p>
+                </div>
+                <div id="total_savings">
+                    <p id="cart_diff_text">You will save ₹<span id="cart_price_savings">{{diff}}</span> on this purchase</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="address">
+    <h1>Address</h1>
+    <form action="" class=buyer_form_form enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        <div>
+            <input type="text" placeholder="Full Name" name="name" value="{{user.first_name}} {{user.last_name}}">
+        </div>
+        <div>
+            <input type="text" name="email" id="email" placeholder="Email Address" value="{{user.email}}">
+        </div>
+        <div class='locality'>
+            <input type="text" name="address_one" id="address_one" placeholder="Street Name/Locality" value="{{address_one}}">
+            <input type="text" name="address_two" id="address_two" placeholder="Area" value={{address_two}}>
+            <input type="tel" name='pincode' placeholder="Pincode" id="pincode" value={{pincode}}>
+            <input type="text" name="address_three" id="address_three" placeholder="City" value={{address_three}}>
+            <input type="text" name="address_four" id="address_four" placeholder="State" value={{address_four}}>
+            <input type="text" name="address_five" id="address_five" placeholder="Country" value={{address_five}}>
+        </div>
+        <div>
+            <button>Continue and Place Order</button>
+        </div>
+    </form>
+</div>
+<div class="summary">
+
+</div>
+<script src="{% static 'js/product_view.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "index.html" %}
+{% load static %}
+{% block title %}Order History{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/history.css' %}">
+<div class="order_hist">
+    <h1>Order History</h1>
+    <div class="all_orders">
+        {% if order_string_length %}
+        {% for name,price,date,img in order_details_search %}
+        <div class="order_hist_item">
+            <div class="hist_img">
+                <img src="{{img}}" alt="{{img}}">
+            </div>
+            <div class="hist_info">
+                <p>{{name}}</p>
+                <p>{{date}}</p>
+                <p>₹{{price}}</p>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>You haven't placed any order</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
